@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">STOCKMGMT V2.0</a>
+        <a href="/">Home</a>
+        {% if request.user.is_authenticated %}
+            <div class='nav-item'>
+                <a class='nav-link' href="/add_items"> Add Items </a> 
+            </div>
+            <div class='nav-item'>
+                <a class='nav-link' href="/list_items"> List Items </a> 
+            </div>
+            <div class='nav-item'>
+                <a class='nav-link' href="/admin"> Admin </a> 
+            </div>
+            <div class='nav-item'>
+                <a class='nav-link' href="/list_history"> List History </a>
+            </div>
+        {% endif %}
+
+ 
+
+        <div class='nav-item'>
+            {% if request.user.is_authenticated %}
+            
+                <form action="/accounts/logout/" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger"> {{user}} Logout</button>
+                </form>
+            
+            {% else %}
+            <a href="/accounts/login/">Login</a>
+            {% endif %}
+            </div>
+        
+
+    </div>
+
+

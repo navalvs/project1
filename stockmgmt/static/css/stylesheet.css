@@ -1,0 +1,39 @@
+body {
+    background-color: pink;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333; /* Navbar background color */
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px; /* Padding around navbar links */
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* Hover background color */
+    color: black;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #333; /* Footer background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+
+

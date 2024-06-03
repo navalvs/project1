@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/stylesheetli.css' %}">
+    <style>
+        /* Define the CSS style for the highlighted cell */
+        .highlight-orange {
+            background-color: orange;
+        }
+    </style>
+    <!-- <title>{{title}}</title> -->
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>{{title}}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+
+    <!-- Display success messages -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>COUNT</td>
+                <td>CATEGORY</td>
+                <td>ITEM NAME</td>
+                <td>QUANTITY IN STORE</td>
+                <td>REORDER LEVEL</td>
+                <th>TIMESTAMP</th>
+                <th>LAST UPDATED</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        {% for instance in queryset %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{instance.category}}</td>
+            <td><a href="{% url 'update_quantity' instance.pk %}">{{instance.item_name}}</a></td> 
+            <td {% if instance.quantity < instance.reorder_level %} class="highlight-orange" {% endif %}>
+                <a href="{% url 'stock_detail' instance.id %}">{{ instance.quantity }}</a>
+            </td>
+            <td>
+                <a href="{% url 'reorder_level' instance.pk %}">
+                    {{ instance.reorder_level }}
+                </a>
+            </td>
+            <td>{{instance.timestamp}}</td>
+            <td>{{instance.last_update}}</td>
+            <td>
+                <form action="{% url 'delete_item' instance.pk %}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <a href="{% url 'export_stock_csv' %}" class="btn btn-primary">Export to CSV</a>
+
+    <!-- {% include 'footer.html' %} -->
+    <!-- <script src="{% static 'js/reorder_level.js' %}"></script> -->
+</body>
+</html>

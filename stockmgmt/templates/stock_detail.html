@@ -1,0 +1,41 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{% static 'css/stylesheetli.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>{{title}}</title> -->
+</head>
+<body>
+    {% include 'header.html' %}
+    <br>
+    <!-- Ensure that the href attributes of anchor tags are properly linked to relevant sections -->
+    <a href="{% url 'issue_items' instance.pk %}"><div class="btn btn-danger"> ISSUE THIS ITEM </div></a>
+    <a href="{% url 'receive_items' instance.pk %}"><div class="btn btn-primary"> RECEIVE THIS ITEM </div></a>
+    <br><br>
+    <div class="display_table">
+        <table class="table">
+            <thead>
+                <tr>                   
+                    <th>ITEM NAME</th> <!-- Change <td> to <th> for table headers -->
+                    <th>QUANTITY IN STORE</th>
+                    <!-- <th>LAST UPDATED</th> -->
+                    <th>REORDER LEVEL</th>
+                </tr>
+            </thead>
+            <tbody> <!-- Add <tbody> for better structure -->
+                <tr>
+                    <td>{{ instance.item_name }}</td> <!-- Ensure that context variables are correctly passed -->
+                    <td>{{ instance.quantity }}</td>
+                    <!-- <td>{{ instance.last_updated }}</td> -->
+                    <td>{{ instance.reorder_level }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

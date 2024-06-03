@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List History</title>
+    <link rel="stylesheet" href="{% static 'css/stylesheetli.css' %}">
+    <style>
+        /* Define the CSS style for the highlighted cell */
+        .highlight-orange {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>{{ header }}</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" value="{{ category_name }}">
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" value="{{ item_name }}">
+        <button type="submit">Search</button>
+        <a href="?category={{ category_name }}&item_name={{ item_name }}&export=true" class="export-button">Export</a>
+    </form>
+
+   
+
+    <div class="display_table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>COUNT</th>
+                    <th>ID</th>
+                    <th>CATEGORY</th>
+                    <th>ITEM NAME</th>
+                    <th>QUANTITY IN STORE</th>
+                    <th>ISSUE QUANTITY</th>
+                    <th>RECEIVE QUANTITY</th>
+                    <th>RECEIVE BY</th>
+                    <th>ISSUE BY</th>
+                    <th>LAST UPDATED</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instance in queryset %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ instance.id }}</td>
+                    <td>
+                        {% if instance.category %}
+                            {{ instance.category.name }}
+                        {% else %}
+                            No Category
+                        {% endif %}
+                    </td>
+                    <td>{{ instance.item_name }}</td>
+                    <td>{{ instance.quantity }}</td>
+                    <td>{{ instance.issue_quantity }}</td>
+                    <td>{{ instance.receive_quantity }}</td>
+                    <td>{{ instance.receive_by }}</td>
+                    <td>{{ instance.issue_by }}</td>
+                    <td>{{ instance.last_update }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{% static 'css/stylesheetai.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>{{title}}</title> -->
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>{{title}}</h1>
+    <form method = 'POST' action = ''> {% csrf_token %}  
+        <br>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <li>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+ 
+
+        {{form}}
+        <br>
+        <input type = 'submit' value = 'Save'/>
+    </form>
+    {% include 'footer.html' %}
+</body>
+
+</html>

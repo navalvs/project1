@@ -1,0 +1,41 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slideshow.css' %}">
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="mySlides slide">
+            <img src="{% static 'img/img1.jpg' %}" alt="Image 1">
+        </div>
+        <div class="mySlides slide">
+            <img src="{% static 'img/img2.jpg' %}" alt="Image 2">
+        </div>
+        <div class="mySlides slide">
+            <img src="{% static 'img/img3.jpg' %}" alt="Image 3">
+        </div>
+        <div class="mySlides slide">
+            <img src="{% static 'img/img4.jpg' %}" alt="Image 4">
+        </div>
+        <div class="mySlides slide">
+            <img src="{% static 'img/img5.jpg' %}" alt="Image 5">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Your Website Name</p>
+    </div>
+
+    <script src="{% static 'js/slideshow.js' %}"></script>
+</body>
+</html>
+
+{% include 'footer.html' %}

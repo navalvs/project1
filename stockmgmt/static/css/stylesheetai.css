@@ -1,0 +1,38 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Message styling */
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.messages li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    color: #155724;
+}
